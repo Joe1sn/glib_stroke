@@ -20,7 +20,11 @@ cobaltstrike 4.9缺少Glibc 2.29报错的辅助安装脚本
 极小概率可能会导致其他软件出问题
 
 ```bash
+#curl
 bash -c "$(curl -O https://raw.githubusercontent.com/username/glib_stroke/main/faster.sh)"
+
+#wget
+bash -c "$(wget https://raw.githubusercontent.com/Joe1sn/glib_stroke/main/faster.sh)"
 ```
 
 ## B.[推荐] 配合glibc-all-in-one
