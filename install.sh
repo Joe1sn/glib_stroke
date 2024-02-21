@@ -10,7 +10,7 @@ echo -e "\e[32m[*]\e[0mNow running in root"
 
 cd /usr/local
 if ! command -v wget &> /dev/null; then
-    echo "\e[31m[!]Please install wget\e[0m"
+    echo -e "\e[31m[!]Please install wget\e[0m"
     exit 1
 fi
 

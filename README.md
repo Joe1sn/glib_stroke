@@ -5,7 +5,7 @@ cobaltstrike 4.9缺少Glibc 2.29报错的辅助安装脚本
 
 **说明：**使用泄露版的cobaltstrike 4.9版本时，由于服务端打包文件是ELF且需要glibc-2.29及以上的支持，所以只能在高版本Linux上使用，低版本会出现以下问题
 
-![image-20240221100925346](D:\Github\glib_stroke\README.assets\image-20240221100925346.png)
+![image-20240221100925346](./README.assets/image-20240221100925346.png)
 
 ```
 ./TeamServerImage: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29' not found (required by ./TeamServerImage)
@@ -14,6 +14,37 @@ cobaltstrike 4.9缺少Glibc 2.29报错的辅助安装脚本
 该脚本将快速创建glibc-2.29相关库，以便cobaltstrike 4.9的泄露版在低版本glibc的linux上的研究和部署
 
 # 使用
+
+## A.[推荐] 暴力软连接
+
+极小概率可能会导致其他软件出问题
+
+```bash
+bash -c "$(curl -O https://raw.githubusercontent.com/username/glib_stroke/main/faster.sh)"
+```
+
+## B.[推荐] 配合glibc-all-in-one
+
+如果你恰好有项目glibc-all-in-one：https://github.com/matrix1001/glibc-all-in-one
+
+### I. 自动
+
+可以使用我编写好的脚本，**需要先进入你的`glibc-all-in-one`项目的文件夹**
+
+```bash
+bash -c "$(curl -O https://raw.githubusercontent.com/username/glib_stroke/main/allinone_faster.sh)"
+```
+
+### II. 手动
+
+```
+cd /home/joe1sn/glibc-all-in-one
+./download_old 2.29-0ubuntu2_amd64
+cd ./libs/2.29-0ubuntu2_amd64
+sudo ln -sf ./libm-2.29.so /lib/x86_64-linux-gnu/libm.so.6
+```
+
+## C.[不推荐] 编译glibc
 
 ```sh
 ## using curl
@@ -35,10 +66,10 @@ cd glib_stroke
 
 环境：
 
-![image-20240221101350557](D:\Github\glib_stroke\README.assets\image-20240221101350557.png)
+![image-20240221101350557](./README.assets/image-20240221101350557.png)
 
-![image-20240221101924041](D:\Github\glib_stroke\README.assets\image-20240221101924041.png)
+![image-20240221101924041](./README.assets/image-20240221101924041.png)
 
 使用过后
 
-![image-20240221110929017](D:\Github\glib_stroke\README.assets\image-20240221110929017.png)
+![image-20240221110929017](./README.assets/image-20240221110929017.png)
