@@ -15,23 +15,66 @@ cobaltstrike 4.9缺少Glibc 2.29报错的辅助安装脚本
 
 # 使用
 
-使用完成后想恢复到不可用：
+使用后想恢复到不可用：
 
 ```sh
 sudo ln -sf /lib/x86_64-linux-gnu/libm-2.27.so /lib/x86_64-linux-gnu/libm.so.6
 ```
 
-直接使用github脚本
+## A.[推荐] 暴力软连接
+
+极小概率可能会导致其他软件出问题
+
+国内推荐(不翻墙)
+
+```sh
+bash -c "$(wget -qO- https://joe1sn.top/faster.sh)"
+```
+
+Github版
+
+```bash
+#curl
+bash -c "$(curl https://raw.githubusercontent.com/username/glib_stroke/main/faster.sh)"
+
+#wget
+bash -c "$(wget -qO- https://raw.githubusercontent.com/Joe1sn/glib_stroke/main/faster.sh)"
+```
+
+## B.[推荐] 配合glibc-all-in-one
+
+如果你恰好有项目glibc-all-in-one：https://github.com/matrix1001/glibc-all-in-one
+
+### I. 自动
+
+可以使用我编写好的脚本，**需要先进入你的`glibc-all-in-one`项目的文件夹**
+
+```bash
+bash -c "$(curl https://raw.githubusercontent.com/username/glib_stroke/main/allinone_faster.sh)"
+
+bash -c "$(wget -qO- https://raw.githubusercontent.com/Joe1sn/glib_stroke/main/allinone_faster.sh)"
+```
+
+### II. 手动
+
+```
+cd /home/joe1sn/glibc-all-in-one
+./download_old 2.29-0ubuntu2_amd64
+cd ./libs/2.29-0ubuntu2_amd64
+sudo ln -sf `pwd`/libm-2.29.so /lib/x86_64-linux-gnu/libm.so.6
+```
+
+## C. [不推荐] 编译glibc
 
 ```sh
 ## using curl
-bash -c "$(curl https://raw.githubusercontent.com/username/glib_stroke/main/install.sh)"
+bash -c "$(curl https://raw.githubusercontent.com/Joe1sn/glib_stroke/main/install.sh)"
 
 ## using wget
 bash -c "$(wget -qO- https://raw.githubusercontent.com/Joe1sn/glib_stroke/main/install.sh)"
 
-## against GFW
-bash -c "$(wget -qO- https://joe1sn.top/install.sh)"
+## using wget
+bash -c "$(wget -qO- https://joe1sn/install.sh)"
 ```
 
 或者
